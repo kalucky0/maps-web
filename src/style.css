@@ -1,0 +1,85 @@
+@import "node_modules/ol/ol.css";
+
+#map,
+body,
+html {
+  background-color: #000;
+}
+
+body,
+html {
+  font-family: sans-serif;
+}
+
+#map {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+img {
+  image-rendering: crisp-edges;
+}
+
+.ol-zoom {
+  top: unset !important;
+  bottom: 14px;
+  left: 12px;
+}
+
+.ol-control,
+.ol-control:hover {
+  background-color: #fff !important;
+}
+
+.ol-control button {
+  background-color: transparent !important;
+  color: rgba(0, 0, 0, 0.86) !important;
+  cursor: pointer;
+}
+
+.ol-control button:focus,
+.ol-control button:hover {
+  background-color: #eee !important;
+}
+
+.search-box {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+}
+
+#search-input {
+  width: 180px;
+  height: 20px;
+  border: none;
+  outline: none;
+  padding: 6px 10px;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 6px 10px;
+}
+
+#search-button svg {
+  height: 14px;
+  width: 14px;
+}

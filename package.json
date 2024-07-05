@@ -1,0 +1,17 @@
+{
+  "name": "maps",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "@types/proj4": "^2.5.5",
+    "vite": "^5.3.3"
+  },
+  "dependencies": {
+    "ol": "latest",
+    "proj4": "^2.11.0"
+  }
+}
