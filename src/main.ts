@@ -66,9 +66,9 @@ function getCenter(): number[] | undefined {
 }
 
 function loadCoords(): void {
-  const hash = location.hash.slice(1);
-  if (!hash) return;
-  const [_, lat, lon] = hash.split('/').map(parseFloat);
+  const path = location.pathname.slice(1);
+  if (!path) return;
+  const [lat, lon] = path.split('/').map(parseFloat);
   if (isNaN(lat) || isNaN(lon)) return;
   const point = fromWGS84(lon, lat);
   map.getView().setCenter(point);
@@ -77,7 +77,7 @@ function loadCoords(): void {
 function onCameraMove(): void {
   const center = getCenter();
   if (!center) return;
-  location.hash = `/${center[1].toFixed(5)}/${center[0].toFixed(5)}`;
+  history.replaceState({}, '', `/${center[1].toFixed(5)}/${center[0].toFixed(5)}`);
 }
 
 function toggleLayer(): void {
