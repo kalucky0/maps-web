@@ -1,10 +1,10 @@
 import './style.css';
 import { Map, View } from 'ol';
 import { Group, Tile } from 'ol/layer';
-import { XYZ } from 'ol/source';
 import { fromLonLat } from 'ol/proj';
-import { fromWGS84, toWGS84 } from './utils';
+import { XYZ } from 'ol/source';
 import { searchPlace } from './search';
+import { fromWGS84, toWGS84 } from './utils';
 
 const layersOrto = new Group({
   layers: [
@@ -46,11 +46,15 @@ const map = new Map({
 });
 
 const searchInput = document.getElementById('search-input') as HTMLInputElement;
-const searchButton = document.getElementById('search-button') as HTMLButtonElement;
+const searchButton = document.getElementById(
+  'search-button',
+) as HTMLButtonElement;
 const searchContainer = document.querySelector('.search-box') as HTMLDivElement;
 const rotateControls = document.querySelector('.ol-rotate') as HTMLDivElement;
 const zoomControls = document.querySelector('.ol-zoom') as HTMLDivElement;
-const zoomLvls: number[] = [11, 11.87, 12.74, 13.61, 14.48, 15.35, 16.22, 17.1, 18];
+const zoomLvls: number[] = [
+  11, 11.87, 12.74, 13.61, 14.48, 15.35, 16.22, 17.1, 18,
+];
 
 function setZoom(lvl: number): void {
   map.getView().animate({
@@ -77,7 +81,11 @@ function loadCoords(): void {
 function onCameraMove(): void {
   const center = getCenter();
   if (!center) return;
-  history.replaceState({}, '', `/${center[1].toFixed(5)}/${center[0].toFixed(5)}`);
+  history.replaceState(
+    {},
+    '',
+    `/${center[1].toFixed(5)}/${center[0].toFixed(5)}`,
+  );
 }
 
 function toggleLayer(): void {
@@ -118,7 +126,7 @@ async function search(): Promise<void> {
   searchInput.blur();
 }
 
-function onKeyDown({key}: KeyboardEvent): void {
+function onKeyDown({ key }: KeyboardEvent): void {
   switch (key) {
     case 'Q':
     case 'q':
