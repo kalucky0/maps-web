@@ -132,6 +132,9 @@ async function search(): Promise<void> {
 }
 
 function onKeyDown({ key }: KeyboardEvent): void {
+  const active = document.activeElement;
+  if (active?.tagName === 'INPUT') return;
+  
   switch (key) {
     case 'Q':
     case 'q':
