@@ -3,6 +3,7 @@ import { Map, View } from 'ol';
 import { Group, Tile } from 'ol/layer';
 import { fromLonLat } from 'ol/proj';
 import { XYZ } from 'ol/source';
+import { locateUser } from './geoip';
 import { searchPlace } from './search';
 import { fromWGS84, toWGS84 } from './utils';
 
@@ -69,13 +70,17 @@ function getCenter(): number[] | undefined {
   return toWGS84(center[0], center[1]);
 }
 
-function loadCoords(): void {
+function loadCoords(): boolean {
   const path = location.pathname.slice(1);
-  if (!path) return;
+  if (!path) return false;
+
   const [lat, lon] = path.split('/').map(parseFloat);
-  if (isNaN(lat) || isNaN(lon)) return;
+  if (Number.isNaN(lat) || Number.isNaN(lon)) return false;
+
   const point = fromWGS84(lon, lat);
   map.getView().setCenter(point);
+
+  return true;
 }
 
 function onCameraMove(): void {
@@ -180,4 +185,11 @@ searchButton.addEventListener('click', search);
 searchInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') search();
 });
-loadCoords();
+
+if (!loadCoords()) {
+  locateUser().then((coords) => {
+    if (!coords) return;
+    const point = fromWGS84(coords[0], coords[1]);
+    map.getView().setCenter(point);
+  });
+}
