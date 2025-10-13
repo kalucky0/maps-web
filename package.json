@@ -9,7 +9,7 @@
     "check:fix": "biome check --fix"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.4",
+    "@biomejs/biome": "2.2.6",
     "@types/proj4": "^2.19.0",
     "vite": "^7.1.6"
   },
